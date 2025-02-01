@@ -1,20 +1,14 @@
 # CHANGELOG
 
 
-## v0.0.1 (2025-01-26)
-
-### Bug Fixes
-
-- Dummy commit
-  ([`d24346c`](https://github.com/JunzhongLin/internal_python_lib_gcp/commit/d24346c32e621489dbe341d71a6b956df36f79b5))
-
-
-## v0.0.0 (2025-01-26)
+## v0.1.0 (2025-02-01)
 
 ### Continuous Integration
 
-- Add semantic release
-  ([`c0e832c`](https://github.com/JunzhongLin/internal_python_lib_gcp/commit/c0e832caf3e4f6db69921e38243c0320ade2ae0b))
+- Add precommit hook
+  ([`bcef5fd`](https://github.com/JunzhongLin/apiutils-johndemo2/commit/bcef5fda30ef36eec3c36e89a6d445cb4cdd46a6))
 
-- Add setup.py
-  ([`14d3505`](https://github.com/JunzhongLin/internal_python_lib_gcp/commit/14d350540a820d259c7fb7468f48ac5fbf1eee66))
+### Features
+
+- Add a demo for weather data fetcher
+  ([`8265119`](https://github.com/JunzhongLin/apiutils-johndemo2/commit/8265119d9055a76cf51f1368a31b9caed1926bee))

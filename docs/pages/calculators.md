@@ -1,4 +1,4 @@
-## ::: demolib.sample_modules.calculators.Calculator
+## ::: apiutils.sample_modules.calculators.Calculator
     options:
         show_source: true
         show_root_heading: true
