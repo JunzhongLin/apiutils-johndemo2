@@ -1,0 +1,4 @@
+[run]
+source =
+    demolib
+relative_files = True

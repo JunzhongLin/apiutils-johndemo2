@@ -1,0 +1,77 @@
+site_name: proj_gcp_template
+site_description: template for gcp workload projects with cloud function
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: lime
+    accent: amber
+    icon:
+      repo: fontawesome/brands/github
+    logo: img/icon-white.svg
+    favicon: img/favicon.png
+    language: en
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.footer
+    - toc.follow
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+repo_url: https://github.com/JunzhongLin/proj_gcp_template
+plugins:
+- mkdocstrings
+- search
+- mike
+
+extra:
+  version:
+    provider: mike
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: "#"
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.blocks.details
+  - pymdownx.blocks.admonition
+  - pymdownx.snippets
+  - pymdownx.pathconverter:
+      base_path: ''
+      relative_path: ''
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - gcp_workload_template_project: index.md
+  - Quick Start:
+      - Sample Usage: pages/calculators.md

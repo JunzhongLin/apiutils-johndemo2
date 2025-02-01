@@ -1,0 +1,20 @@
+name: dependency_review
+on: [pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@v3
+        with:
+          allow-licenses: Apache-1.1, Apache-2.0, BSD-2-Clause, BSD-3-Clause, MIT, AFL-2.1, AFL-3.0, CC-BY-4.0, CERN-OHL-P-2.0, ISC, libtiff, NCSA, OpenSSL, PHP-3.01, PostgreSQL, PSF-2.0, TCP-wrappers, Unicode-DFS-2016, UPL-1.0, W3C, Xnet, Zend-2.0, Zlib
+          allow-dependencies-licenses: pkg:pypi/httpx@0.23.3
+          vulnerability-check: false
+          comment-summary-in-pr: always

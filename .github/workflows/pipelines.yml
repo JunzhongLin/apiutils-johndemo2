@@ -1,0 +1,81 @@
+name: python_package_release_template_pipeline
+on:
+  push:
+    branches:
+      - main
+env:
+    REGION: europe-west1
+    PROJECT_NAME: python-internal-lib-template
+
+jobs:
+    build_artifacts:
+        name: 'Build artifacts'
+        runs-on: ubuntu-latest
+        environment: share
+        env:
+            GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+            PROJECT_ID: "share-449008"
+            REPOSITORY: "demolib"
+            REGION: "europe-west1"
+
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+
+            - name: "Build test image"
+              run: |
+                echo "Building test image..."
+                docker build -f test.Dockerfile \
+                -t ${{ env.PROJECT_NAME }}:test .
+                echo "Done building test image."
+
+            - name: "run tests"
+              run: |
+                echo "Running tests..."
+                docker rm ${{ env.PROJECT_NAME }}-test || true &&docker run --name ${{ env.PROJECT_NAME }}-test ${{ env.PROJECT_NAME }}:test
+                if [ $? -eq 0 ]
+                then
+                  echo "no failures -> publish package"
+                else
+                  echo "failures -> stop build process"
+                  exit 1
+                fi
+                echo "Done running tests."
+
+            - name: Set up Python 3.9
+              uses: actions/setup-python@v1
+              with:
+                python-version: 3.9
+
+            - name: Install Dependencies
+              run: |
+                python -m pip install --upgrade pip
+                python -m pip install setuptools
+                python -m pip install wheel
+                python -m pip install twine
+                python -m pip install keyrings.google-artifactregistry-auth
+
+            - id: "auth"
+              uses: google-github-actions/auth@v2
+              with:
+                credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+            - name: "Set up Cloud SDK"
+              uses: "google-github-actions/setup-gcloud@v2"
+
+            - name: "Use gcloud CLI"
+              run: "gcloud info"
+
+            - name: Build Package
+              run: |
+                python setup.py sdist bdist_wheel
+
+            # - name: Upload to Artifact Registry
+            #   run: |
+            #     gcloud config set artifacts/repository ${{ env.REPOSITORY }}
+            #     gcloud config set artifacts/location ${{ env.REGION }}
+#
+            #     # gcloud config set account github-gcr-service-account@norrin-radd.iam.gserviceaccount.com
+            #     # gcloud auth activate-service-account github-gcr-service-account@norrin-radd.iam.gserviceaccount.com --key-file=$GOOGLE_APPLICATION_CREDENTIALS --project=norrin-radd
+#
+            #     python3 -m twine upload --repository-url https://${{ env.REGION }}-python.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/ dist/*

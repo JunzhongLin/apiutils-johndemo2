@@ -1,0 +1,27 @@
+name: publish_docs
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: git config user.name docs-bot
+      - run: git config user.email docs-bot@yolo.io
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - uses: actions/cache@v3
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: pip install mkdocs-material 'mkdocstrings[python]' mike
+      - run: git fetch origin gh-pages --depth=1
+      - run: echo "LIB_VERSION=$(cat setup.py | grep __version__ -m 1 | cut -f2 -d= | cut -f 2 -d'"')" >> $GITHUB_ENV
+      - run: echo $LIB_VERSION
+      - run: mike deploy -u $LIB_VERSION latest
+      - run: mike set-default -p $LIB_VERSION # -p to also push commits
