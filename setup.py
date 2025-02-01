@@ -12,7 +12,7 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 with open("dev.requirements.txt", "r", encoding="utf-8") as fh:
     requirements_dev = list(map(str.strip, fh.readlines()))
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 setuptools.setup(
     # Note: Please change the following fields to your own information
