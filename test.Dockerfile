@@ -7,7 +7,7 @@ ENV PYTHONPATH="/opt/application:/opt/application/tests:${PYTHONPATH}"
 COPY dev.requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
-COPY demolib demolib
+COPY apiutils apiutils
 
 COPY tests tests
 COPY .coveragerc ./.coveragerc
