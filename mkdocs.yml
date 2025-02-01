@@ -75,3 +75,4 @@ nav:
   - gcp_workload_template_project: index.md
   - Quick Start:
       - Sample Usage: pages/calculators.md
+      - WeatherApi: pages/weather_api.md
