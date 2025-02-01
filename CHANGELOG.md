@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v0.1.2 (2025-02-01)
+
+### Bug Fixes
+
+- Bump minor version
+  ([`4b020b1`](https://github.com/JunzhongLin/apiutils-johndemo2/commit/4b020b12297c2ab387e2ef5e4af271872435a967))
+
+### Chores
+
+- Remove temporary setup
+  ([`aef6e99`](https://github.com/JunzhongLin/apiutils-johndemo2/commit/aef6e99b778df18ea10e5abaaa00bc62d10f57c2))
+
+
 ## v0.1.1 (2025-02-01)
 
 ### Bug Fixes
