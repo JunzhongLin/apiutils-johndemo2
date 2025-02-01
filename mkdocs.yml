@@ -1,5 +1,5 @@
-site_name: proj_gcp_template
-site_description: template for gcp workload projects with cloud function
+site_name: apiutils-johndemo2
+site_description: utils to fetch weather data from external api
 theme:
   name: material
   palette:
@@ -74,5 +74,4 @@ markdown_extensions:
 nav:
   - gcp_workload_template_project: index.md
   - Quick Start:
-      - Sample Usage: pages/calculators.md
       - WeatherApi: pages/weather_api.md
